@@ -1,0 +1,12 @@
+<% if current_user.nil? %>
+  	<%= button_to 'Follow', login_url,
+  		method: :get,
+  		class: "btn btn-success",
+  		title: "Login to follow #{@user.name}" %>
+<% elsif current_user_id == @user.id %>
+	
+<% elsif not current_user.following? @user %>
+	<%= render 'follow' %>
+<% else %>
+	<%= render 'unfollow' %>
+<% end %>

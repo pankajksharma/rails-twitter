@@ -1,0 +1,20 @@
+	<div class="row span4">
+		<%= link_to gravatar_for(@current_user), 
+			"http://gravatar.com/emails",
+			:target => :_blank, 
+			:title => 'Change profile picture' %>
+		<span class="current_user">
+      		<%= @current_user.name %>
+  		</span>
+  		<span>
+  			<%= link_to 'View Profile', user_path(@current_user) %>
+  		</span>
+		<%= render 'microposts/form' %>
+	</div>
+	<div class="row span6">
+		<h2>Your Microposts (<%= @microposts.count %>)</h2>
+		<ul class="microposts">
+			<%= render @microposts %>
+		</ul>
+		<%= will_paginate @microposts %>
+	</div>

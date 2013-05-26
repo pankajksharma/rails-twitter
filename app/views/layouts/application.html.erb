@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= page_title yield :sub_title %></title>  
+    <%= stylesheet_link_tag "application", media: "all", 
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to(
+              image_tag('https://addons.cdn.mozilla.net/img/uploads/addon_icons/423/423970-64.png', alt: 'Home'),
+              home_path) 
+          %>
+          <nav>
+            <ul class="nav pull-right">
+              <li><%= link_to "Home", home_path %></li>
+              <li><%= link_to "Help", '#' %></li>
+              <% if not current_user_id %>
+                <li><%= link_to "Sign in", login_path %></li>
+                <li><%= link_to "Sign up", signup_path %></li>
+              <% else %>
+                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to "Sign Out", logout_path, method: :delete, :confirm =>  'Do you want to logout?' %>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+      <%= yield %>
+    </div>
+  </body>
+</html>

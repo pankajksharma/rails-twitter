@@ -1,0 +1,16 @@
+<% provide :sub_title, @user.name %>
+<div class="container" style="margin-top:120px;">
+	<p id="notice"><%= notice %></p>
+	<%= render 'side_pane' %>
+	<div class="row span6">
+		<% if @user.micropost.any? %>
+			<h3>Microposts (<%= @user.micropost.count %>)</h3>
+      		<ol class="microposts">
+        		<%= render @microposts %>
+      		</ol>
+      	<%= will_paginate @microposts %>
+		<% else %>
+			<h3>No micropost yet!</h3>
+		<% end %>
+	</div>
+</div>

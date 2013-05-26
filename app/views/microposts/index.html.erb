@@ -1,0 +1,34 @@
+<h3>Latest microposts</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Post</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @microposts.each do |micropost| %>
+      <tr>
+        <td><%= micropost.post %></td>
+        <td><%= micropost.user.name %></td>
+        <td><%= link_to 'Show', micropost %></td>
+        <td>
+          <% if is_current_user_post micropost.user_id %>
+            <%= link_to 'Edit', edit_micropost_path(micropost) %></td>
+          <% end %>
+        <td>
+          <% if is_current_user_post micropost.user_id %>
+            <%= link_to 'Destroy', micropost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
